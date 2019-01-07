@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "myTcpClient", "myTcpClient.vcxproj", "{37CE4E14-302D-36D1-95E7-FE873BD057EA}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServerManager", "..\ServerManager - 副本\ServerManager.vcxproj", "{368C94D2-C47F-3266-B650-605600FE91D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37CE4E14-302D-36D1-95E7-FE873BD057EA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{37CE4E14-302D-36D1-95E7-FE873BD057EA}.Debug|Win32.Build.0 = Debug|Win32
+		{37CE4E14-302D-36D1-95E7-FE873BD057EA}.Release|Win32.ActiveCfg = Release|Win32
+		{37CE4E14-302D-36D1-95E7-FE873BD057EA}.Release|Win32.Build.0 = Release|Win32
+		{368C94D2-C47F-3266-B650-605600FE91D4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{368C94D2-C47F-3266-B650-605600FE91D4}.Debug|Win32.Build.0 = Debug|Win32
+		{368C94D2-C47F-3266-B650-605600FE91D4}.Release|Win32.ActiveCfg = Release|Win32
+		{368C94D2-C47F-3266-B650-605600FE91D4}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

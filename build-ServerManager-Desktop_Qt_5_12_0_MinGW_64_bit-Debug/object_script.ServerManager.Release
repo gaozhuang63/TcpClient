@@ -1,0 +1,14 @@
+release/main.o
+release/dialog.o
+release/tcpserver.o
+release/tcpsocket.o
+release/threadhandle.o
+release/new_window.o
+release/sql.o
+release/form.o
+release/qrc_servermanager.o
+release/moc_dialog.o
+release/moc_tcpserver.o
+release/moc_tcpsocket.o
+release/moc_new_window.o
+release/moc_form.o

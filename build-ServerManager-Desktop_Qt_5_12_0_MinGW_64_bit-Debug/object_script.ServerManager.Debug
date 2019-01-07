@@ -1,0 +1,14 @@
+debug/main.o
+debug/dialog.o
+debug/tcpserver.o
+debug/tcpsocket.o
+debug/threadhandle.o
+debug/new_window.o
+debug/sql.o
+debug/form.o
+debug/qrc_servermanager.o
+debug/moc_dialog.o
+debug/moc_tcpserver.o
+debug/moc_tcpsocket.o
+debug/moc_new_window.o
+debug/moc_form.o
