@@ -70,19 +70,12 @@ void TcpSocket::readDataSlot()
     emit readDataSig(socketID,this->peerAddress().toString(),this->peerPort(),RecvData);                            */  //注释尾
 
 
-
-
-
-
-
-
-
     QDataStream in(this);
     in.setVersion(QDataStream::Qt_5_0);
 
 //    float useTime = time.elapsed();
 
-    if (bytesReceived <= sizeof(qint64))
+    if (bytesReceived <= sizeof(qint64))                                                        //如果接受到的数据小于64 说明刚开始接收
     {
         in >> m_MessageType;
         bytesReceived += sizeof(qint64);
@@ -94,6 +87,47 @@ void TcpSocket::readDataSlot()
 		bytesReceived += this->bytesAvailable();
         switch(m_MessageType)
         {
+            case Login:
+            {
+                char buf[8196];
+                QString log,password ;
+                int sizeHead = 0;
+                in >> TotalBytes >> sizeHead ;
+                //nSize = this->bytesAvailable();
+                log_pas.append(this->readAll());       //readAll()是QTcpSocket从QIODevice继承的public function，直接调用就可以读取从服务器发过来的数据了
+                //log.append(this->read(qint64(14)));
+                QStringList list=log_pas.split("#");
+                qDebug()<<list ;
+                qDebug() << "账号：" << list[1];
+                qDebug() << "密码：" << list[2];
+                qDebug() << "messageLen:" << log_pas.size() << "messageData:" << log_pas ;
+                if(list[1]=="gaozhuang63"&&list[2]=="gaozhuang1")
+                {
+                    QByteArray outBlock;
+                    QDataStream sendOut(&outBlock,QIODevice::WriteOnly);
+                    sendOut.setVersion(QDataStream::Qt_5_0);
+
+                    m_MessageType = Login;
+                    //sendOut << m_MessageType;
+
+                    QString strMessage1 = "pass";
+                    int nn = outBlock.size();
+                    nn = outBlock.length();
+
+                    sendOut << qint64(0) << qint64(0) << strMessage1.toUtf8();
+
+                    qint64 totalBytes = outBlock.size();
+
+                    sendOut.device()->seek(0);
+                    sendOut << m_MessageType << totalBytes;
+
+                    qDebug() << "data.length(): " << outBlock.length() << "SendData:" << outBlock;
+
+                    this->write(outBlock);
+                }
+
+                break;
+            }
             case Message:
             {
 				char buf[8196];
@@ -159,6 +193,8 @@ void TcpSocket::readDataSlot()
         bytesReceived += this->bytesAvailable();
         switch(m_MessageType)
         {
+
+
             case Message:
             {
                 inBlock.append(this->readAll());

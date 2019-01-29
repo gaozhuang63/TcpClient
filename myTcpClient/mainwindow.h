@@ -10,7 +10,7 @@ class MainWindow;
 }
 
 //=====枚举标志信息类型，分别为消息、文件==============
-enum MessageType{Message,FileName,NONE};
+enum MessageType{Login,Message,FileName,NONE};
 
 class MainWindow : public QMainWindow
 {

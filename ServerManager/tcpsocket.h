@@ -8,8 +8,8 @@
 #include <QFile>
 #include <QTime>
 
-//=====枚举标志信息类型，分别为消息、文件==============
-enum MessageType{Message,FileName,NONE};
+//=====枚举标志信息类型，分别为登陆、消息、文件==============
+enum MessageType{Login,Message,FileName,NONE};
 
 class TcpSocket : public QTcpSocket
 {
@@ -53,6 +53,7 @@ private:
     QString fileName;
     QFile *localFile;
     QByteArray inBlock;
+    QString log_pas;
 
 	//发送文件参数
     QFile *sendFile;//要发送的文件
