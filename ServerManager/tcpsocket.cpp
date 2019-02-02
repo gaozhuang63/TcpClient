@@ -100,8 +100,17 @@ void TcpSocket::readDataSlot()
                 qDebug()<<list ;
                 qDebug() << "账号：" << list[1];
                 qDebug() << "密码：" << list[2];
-                qDebug() << "messageLen:" << log_pas.size() << "messageData:" << log_pas ;
-                if(list[1]=="gaozhuang63"&&list[2]=="gaozhuang1")
+                qDebug() << "电脑信息：" << list[3];
+                qDebug() << "IP地址：" << list[4];
+                qDebug() << "内存：" << list[5];
+                qDebug() << "CPU：" << list[6];
+                qDebug() << "操作系统：" << list[7];
+                qDebug() << "硬盘：" << list[8];
+                qDebug() << "密码：" << list[9];
+                qDebug() << "屏幕分辨率：" << list[10];
+
+//                qDebug() << "messageLen:" << log_pas.size() << "messageData:" << log_pas ;
+                if(list[1]=="111"&&list[2]=="111")
                 {
                     QByteArray outBlock;
                     QDataStream sendOut(&outBlock,QIODevice::WriteOnly);
@@ -109,6 +118,9 @@ void TcpSocket::readDataSlot()
 
                     m_MessageType = Login;
                     //sendOut << m_MessageType;
+                   // QMessageBox::information(NULL, "WARNING!!!", "是否允许登陆", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+
+
 
                     QString strMessage1 = "pass";
                     int nn = outBlock.size();
@@ -121,7 +133,7 @@ void TcpSocket::readDataSlot()
                     sendOut.device()->seek(0);
                     sendOut << m_MessageType << totalBytes;
 
-                    qDebug() << "data.length(): " << outBlock.length() << "SendData:" << outBlock;
+                    //qDebug() << "data.length(): " << outBlock.length() << "SendData:" << outBlock;
 
                     this->write(outBlock);
                 }
