@@ -38,7 +38,7 @@ login::login(QWidget *parent) :
     ipAdd="192.168.3.89";
     portd="6666";
 
-    tcpClient->connectToHost(ipAdd,portd.toInt());   //建立连接
+    //tcpClient->connectToHost(ipAdd,portd.toInt());   //建立连接
     connect(tcpClient,&QTcpSocket::readyRead,this,&login::readDataSlot);                                            //初始化TCP
 
 
@@ -72,23 +72,15 @@ QString login::receive(QString a)
 
 void login::on_pushButton_clicked()
 {
-
+    tcpClient->connectToHost(ipAdd,portd.toInt());   //建立连接
     qDebug() << "登陆，验证中..." ;
     qDebug() << message();
     configure  = message() ;
-//    Info info;
-//    connect(this,SIGNAL(rec()),&info,SLOT(message()));
-//    emit rec();
-
-//    Sleep(500);
-//    qDebug()<< configure;
 
 
-
-
-//    tcpClient->write(data.toUtf8());
 
     QByteArray outBlock ="";                                         //用于暂存我们要发送的数据
+    QString data="";
     QDataStream sendOut(&outBlock,QIODevice::WriteOnly);         //使用数据流写入数据
     sendOut.setVersion(QDataStream::Qt_5_0);                     //设置数据流的版本，客户端和服务器端使用的版本要相同
 
@@ -97,7 +89,7 @@ void login::on_pushButton_clicked()
 
     QString strData = this->ui->lineEdit->text();
     QString strData1 = this->ui->lineEdit_2->text();
-    QString data="#"+strData+"#"+strData1+configure;
+    data="#"+strData+"#"+strData1+configure;
 
     if (strData.isEmpty())
     {
@@ -121,8 +113,8 @@ void login::on_pushButton_clicked()
 
     tcpClient->write(outBlock);                                                           //发送给服务端
 
-    outBlock ="";
-
+    data ="";
+    qDebug() <<"data:"<<outBlock ;
 
 
 }
@@ -151,12 +143,10 @@ void login::readDataSlot()
                 QString strTmp;
                 int sizeHead = 0;
                 in >> TotalBytes >> sizeHead;
-                //nSize = this->bytesAvailable();
                 inBlock.append(tcpClient->readAll());
-                //this->read(buf,nSize);
                 qDebug() << "messageLen:" << inBlock.size() << "messageData:" << QString(inBlock);
 //                bytesReceived += sizeof(qint64);
-                //nSize = tcpClient->bytesAvailable();
+
                 break;
             }
 
